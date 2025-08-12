@@ -32,6 +32,21 @@
       margin-top: 10px;
       color: #e65100;
     }
+    nav {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+    nav a {
+      text-decoration: none;
+      background: #ffe0b2;
+      color: #bf360c;
+      padding: 8px 12px;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+      font-weight: 600;
+    }
     section {
       background: #fff3e0;
       padding: 20px;
@@ -45,15 +60,14 @@
       padding-bottom: 8px;
       margin-top: 0;
     }
-    p {
+    p, ul {
       font-size: 1.1em;
       color: #bf360c;
     }
     ul {
-      color: #bf360c;
-      font-size: 1em;
-      line-height: 1.5;
+      list-style-type: disc;
       padding-left: 20px;
+      line-height: 1.5;
     }
     footer {
       text-align: center;
@@ -64,44 +78,61 @@
   </style>
 </head>
 <body>
+
   <header>
     <h1>Golden Horizon Student Fundraiser</h1>
     <p>Empowering Students, Supporting Parents, Building Futures</p>
   </header>
 
-  <section>
-    <h2>Our Purpose</h2>
-    <p>
-      Golden Horizon is a student-led initiative designed to help parents save money by reducing the need to buy personal study supplies for their children.
-      At the same time, it promotes real-world experience by giving students the chance to earn their own money responsibly.
-    </p>
-  </section>
+  <nav>
+    <a href="#purpose">Home</a>
+    <a href="#foundations">Foundations</a>
+    <a href="#about">About</a>
+    <a href="#how-it-works">How it Works</a>
+  </nav>
 
-  <section>
-    <h2>Our Foundations</h2>
-    <p>
-      Golden Horizon is a student-led business focused on:
-    </p>
-    <ul>
-      <li>Helping parents save money by reducing the need to buy personal study supplies.</li>
-      <li>Giving students real-world experience to develop financial responsibility.</li>
-      <li>Empowering students to earn their own money through leadership and entrepreneurship.</li>
-      <li>Building teamwork, communication, and problem-solving skills among students.</li>
-      <li>Supporting student education and fostering community involvement.</li>
-    </ul>
-  </section>
+  <main>
+    <section id="purpose">
+      <h2>Our Purpose</h2>
+      <p>
+        Golden Horizon is a student-led initiative designed to help parents save money by reducing the need to buy personal study supplies for their children.
+        At the same time, it promotes real-world experience by giving students the chance to earn their own money responsibly.
+      </p>
+    </section>
 
-  <section>
-    <h2>How It Works</h2>
-    <p>
-      Students can fill out an order form with their card details (coming soon).
-      Payment is made in cash at school. Cards will be ready within 2 days after ordering.
-      Cancellations are accepted before the printing process starts.
-    </p>
-  </section>
+    <section id="foundations">
+      <h2>Our Foundations</h2>
+      <ul>
+        <li>Helping parents save money by reducing the need to buy personal study supplies.</li>
+        <li>Giving students real-world experience to develop financial responsibility.</li>
+        <li>Empowering students to earn their own money through leadership and entrepreneurship.</li>
+        <li>Building teamwork, communication, and problem-solving skills among students.</li>
+        <li>Supporting student education and fostering community involvement.</li>
+      </ul>
+    </section>
+
+    <section id="about">
+      <h2>About</h2>
+      <p>
+        Founded in 2025, Benjamin Boonyoo — an academically advanced student — created this business to blend his passion for learning with entrepreneurship.
+        From a young age, Benjamin has pursued excellence in academics while exploring creative ways to solve problems and help others. This project is a reflection
+        of his dedication, curiosity, and vision for building something meaningful at an early age.
+      </p>
+    </section>
+
+    <section id="how-it-works">
+      <h2>How It Works</h2>
+      <p>
+        Students can fill out an order form with their card details (coming soon). Payment is made in cash at school. Cards will be ready within 2 days after ordering.
+        Cancellations are accepted before the printing process starts.
+      </p>
+    </section>
+  </main>
 
   <footer>
-    &copy; 2025 Golden Horizon Fundraiser - Buckhorn Middle School
+    <p>© 2025 Golden Horizon Fundraiser - Buckhorn Middle School</p>
   </footer>
+
 </body>
 </html>
+
