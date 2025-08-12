@@ -189,36 +189,48 @@
   </form>
 
   <script>
-    const nameInput = document.getElementById('card-name-input');
-    const desc1Input = document.getElementById('description1-input');
-    const desc2Input = document.getElementById('description2-input');
-    const desc3Input = document.getElementById('description3-input');
-    const headingInput = document.getElementById('custom-heading-input');
-    const item1Input = document.getElementById('item1');
-    const item2Input = document.getElementById('item2');
-    const item3Input = document.getElementById('item3');
+const nameInput = document.getElementById('card-name-input');
+const desc1Input = document.getElementById('description1-input');
+const desc2Input = document.getElementById('description2-input');
+const desc3Input = document.getElementById('description3-input');
+const headingInput = document.getElementById('custom-heading-input');
+const item1Input = document.getElementById('item1');
+const item2Input = document.getElementById('item2');
+const item3Input = document.getElementById('item3');
 
-    const previewName = document.getElementById('preview-name');
-    const previewDesc1 = document.getElementById('preview-desc1');
-    const previewDesc2 = document.getElementById('preview-desc2');
-    const previewDesc3 = document.getElementById('preview-desc3');
-    const previewHeading = document.getElementById('preview-heading');
-    const previewItem1 = document.getElementById('preview-item1');
-    const previewItem2 = document.getElementById('preview-item2');
-    const previewItem3 = document.getElementById('preview-item3');
+const previewName = document.getElementById('preview-name');
+const previewDesc1 = document.getElementById('preview-desc1');
+const previewDesc2 = document.getElementById('preview-desc2');
+const previewDesc3 = document.getElementById('preview-desc3');
+const previewHeading = document.getElementById('preview-heading');
+const previewItem1 = document.getElementById('preview-item1');
+const previewItem2 = document.getElementById('preview-item2');
+const previewItem3 = document.getElementById('preview-item3');
 
-    nameInput.addEventListener('input', () => {
-      previewName.textContent = nameInput.value.trim() || '[Name]';
-    });
-    desc1Input.addEventListener('input', () => {
-      previewDesc1.textContent = desc1Input.value.trim() || '[Description 1]';
-    });
-    desc2Input.addEventListener('input', () => {
-      previewDesc2.textContent = desc2Input.value.trim() || '[Description 2]';
-    });
-    desc3Input.addEventListener('input', () => {
-      previewDesc3.textContent = desc3Input.value.trim() || '[Description 3]';
-    });
-    headingInput.addEventListener('input', () => {
+nameInput.addEventListener('input', () => {
+  previewName.textContent = nameInput.value.trim() || '[Name]';
+});
+desc1Input.addEventListener('input', () => {
+  previewDesc1.textContent = desc1Input.value.trim() || '[Description 1]';
+});
+desc2Input.addEventListener('input', () => {
+  previewDesc2.textContent = desc2Input.value.trim() || '[Description 2]';
+});
+desc3Input.addEventListener('input', () => {
+  previewDesc3.textContent = desc3Input.value.trim() || '[Description 3]';
+});
+headingInput.addEventListener('input', () => {
+  previewHeading.textContent = headingInput.value.trim() || '[Heading]';
+});
+item1Input.addEventListener('input', () => {
+  previewItem1.textContent = item1Input.value.trim() || '[One]';
+});
+item2Input.addEventListener('input', () => {
+  previewItem2.textContent = item2Input.value.trim() || '[Two]';
+});
+item3Input.addEventListener('input', () => {
+  previewItem3.textContent = item3Input.value.trim() || '[Three]';
+});
+
      
 
