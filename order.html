@@ -119,29 +119,23 @@
     #preview-items > div {
       min-width: 50px;
     }
-
     /* Thank you message styles */
-    #thankyou-message {
-      display: none;
-      margin-top: 30px;
-      background: #e0ffe0;
-      padding: 20px;
+    #thank-you-message {
+      background: #e8f5e9;
+      border: 2px solid #4caf50;
       border-radius: 10px;
-      color: #256029;
+      padding: 20px;
+      margin-top: 30px;
+      color: #2e7d32;
+      font-weight: 600;
+      display: none;
     }
-    #thankyou-message h2 {
+    #thank-you-message h2 {
       margin-top: 0;
+      color: #1b5e20;
     }
-    #submitted-data {
-      background: #f0fff0;
-      padding: 10px;
-      border-radius: 5px;
-      font-family: monospace;
-      white-space: pre-wrap;
-      text-align: left;
-      max-height: 300px;
-      overflow-y: auto;
-      border: 1px solid #a4dba4;
+    #thank-you-message p {
+      font-weight: normal;
     }
   </style>
 </head>
@@ -217,18 +211,11 @@
     </div>
   </form>
 
-  <div id="thankyou-message">
-    <h2>Thank you for your order!</h2>
-    <p>Here is what you submitted:</p>
-    <pre id="submitted-data"></pre>
-  </div>
+  <!-- Thank you message container -->
+  <div id="thank-you-message"></div>
 
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-      const form = document.getElementById('order-form');
-      const thankyouDiv = document.getElementById('thankyou-message');
-      const submittedDataPre = document.getElementById('submitted-data');
-
       const nameInput = document.getElementById('card-name-input');
       const desc1Input = document.getElementById('description1-input');
       const desc2Input = document.getElementById('description2-input');
@@ -247,7 +234,6 @@
       const previewItem2 = document.getElementById('preview-item2');
       const previewItem3 = document.getElementById('preview-item3');
 
-      // Live preview event listeners
       nameInput.addEventListener('input', () => {
         previewName.textContent = nameInput.value.trim() || '[Name]';
       });
@@ -274,30 +260,47 @@
       });
 
       // Handle form submission
-      form.addEventListener('submit', function(event) {
-        event.preventDefault(); // Prevent default form submission
+      const form = document.getElementById('order-form');
+      const thankYouMessage = document.getElementById('thank-you-message');
 
-        // Collect all form data
-        const formData = new FormData(form);
-        const data = {};
-        formData.forEach((value, key) => {
-          data[key] = value;
-        });
+      form.addEventListener('submit', (e) => {
+        e.preventDefault(); // prevent page reload
 
-        // Show submitted data in JSON format
-        submittedDataPre.textContent = JSON.stringify(data, null, 2);
+        // Collect form values
+        const studentName = document.getElementById('student-name').value.trim();
+        const grade = document.getElementById('grade').value;
+        const cardName = nameInput.value.trim();
+        const description1 = desc1Input.value.trim();
+        const description2 = desc2Input.value.trim();
+        const description3 = desc3Input.value.trim();
+        const customHeading = headingInput.value.trim();
+        const item1 = item1Input.value.trim();
+        const item2 = item2Input.value.trim();
+        const item3 = item3Input.value.trim();
 
-        // Hide the form and show thank you message
+        // Build thank you message with submitted info
+        thankYouMessage.innerHTML = `
+          <h2>Thank You for Your Order, ${studentName}!</h2>
+          <p><strong>Grade:</strong> ${grade}</p>
+          <p><strong>Card Name:</strong> ${cardName}</p>
+          <p><strong>Description 1:</strong> ${description1}</p>
+          <p><strong>Description 2:</strong> ${description2 || '(none)'}</p>
+          <p><strong>Description 3:</strong> ${description3 || '(none)'}</p>
+          <p><strong>Custom Heading:</strong> ${customHeading || '(none)'}</p>
+          <p><strong>Items under heading:</strong> ${item1 || '(none)'} | ${item2 || '(none)'} | ${item3 || '(none)'}</p>
+          <p>We will contact you within 2 days to arrange pickup and payment.</p>
+          <p><em>If you have questions, please <a href="mailto:contact@goldenhorizon.com">email us</a>.</em></p>
+        `;
+
+        // Show thank-you message and hide form and preview
+        thankYouMessage.style.display = 'block';
         form.style.display = 'none';
-        thankyouDiv.style.display = 'block';
-
-        // Optionally, scroll to the thank you message
-        thankyouDiv.scrollIntoView({ behavior: 'smooth' });
       });
     });
   </script>
 </body>
 </html>
+
 
 
 
