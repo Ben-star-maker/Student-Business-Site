@@ -119,6 +119,30 @@
     #preview-items > div {
       min-width: 50px;
     }
+
+    /* Thank you message styles */
+    #thankyou-message {
+      display: none;
+      margin-top: 30px;
+      background: #e0ffe0;
+      padding: 20px;
+      border-radius: 10px;
+      color: #256029;
+    }
+    #thankyou-message h2 {
+      margin-top: 0;
+    }
+    #submitted-data {
+      background: #f0fff0;
+      padding: 10px;
+      border-radius: 5px;
+      font-family: monospace;
+      white-space: pre-wrap;
+      text-align: left;
+      max-height: 300px;
+      overflow-y: auto;
+      border: 1px solid #a4dba4;
+    }
   </style>
 </head>
 <body>
@@ -128,7 +152,7 @@
 
   <a href="index.html" class="back-link">← Back to Home</a>
 
-  <form action="thankyou.html" method="POST">
+  <form id="order-form">
     <label for="student-name">Student Name</label>
     <input type="text" id="student-name" name="student-name" required />
 
@@ -160,21 +184,20 @@
       <input type="text" id="item2" name="item2" placeholder="Two" maxlength="20" style="flex:1;" />
       <input type="text" id="item3" name="item3" placeholder="Three" maxlength="20" style="flex:1;" />
     </div>
-    
-<p style="font-size: 1.3em; font-weight: 700; color: #d84315; margin-bottom: 15px;">
-  Price: $1.25 for a pack of 8 cards (Only Option For Now)
-</p>
 
-<p class="note">
-  Price (again): $1.25 per pack of 8 cards (only option for now).<br />
-  After you submit your order, I will contact you in about 2 days to arrange a time and place to meet for handing over the product.<br />
-  Payment will be handled when in the process of handing over the product.<br />
-  Cards will be ready within 2 days.<br />
-  Cancellations and refunds are accepted only before the printing process starts.<br />
-  No refunds after printing has begun.<br />
-  <em>Note: Soon, you will be able to check the status of your order and receive notifications when printing starts.</em>
-</p>
+    <p style="font-size: 1.3em; font-weight: 700; color: #d84315; margin-bottom: 15px;">
+      Price: $1.25 for a pack of 8 cards (Only Option For Now)
+    </p>
 
+    <p class="note">
+      Price (again): $1.25 per pack of 8 cards (only option for now).<br />
+      After you submit your order, I will contact you in about 2 days to arrange a time and place to meet for handing over the product.<br />
+      Payment will be handled when in the process of handing over the product.<br />
+      Cards will be ready within 2 days.<br />
+      Cancellations and refunds are accepted only before the printing process starts.<br />
+      No refunds after printing has begun.<br />
+      <em>Note: Soon, you will be able to check the status of your order and receive notifications when printing starts.</em>
+    </p>
 
     <button type="submit">Submit Order</button>
 
@@ -194,8 +217,18 @@
     </div>
   </form>
 
+  <div id="thankyou-message">
+    <h2>Thank you for your order!</h2>
+    <p>Here is what you submitted:</p>
+    <pre id="submitted-data"></pre>
+  </div>
+
   <script>
     document.addEventListener('DOMContentLoaded', () => {
+      const form = document.getElementById('order-form');
+      const thankyouDiv = document.getElementById('thankyou-message');
+      const submittedDataPre = document.getElementById('submitted-data');
+
       const nameInput = document.getElementById('card-name-input');
       const desc1Input = document.getElementById('description1-input');
       const desc2Input = document.getElementById('description2-input');
@@ -214,6 +247,7 @@
       const previewItem2 = document.getElementById('preview-item2');
       const previewItem3 = document.getElementById('preview-item3');
 
+      // Live preview event listeners
       nameInput.addEventListener('input', () => {
         previewName.textContent = nameInput.value.trim() || '[Name]';
       });
@@ -238,10 +272,33 @@
       item3Input.addEventListener('input', () => {
         previewItem3.textContent = item3Input.value.trim() || '[Three]';
       });
+
+      // Handle form submission
+      form.addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent default form submission
+
+        // Collect all form data
+        const formData = new FormData(form);
+        const data = {};
+        formData.forEach((value, key) => {
+          data[key] = value;
+        });
+
+        // Show submitted data in JSON format
+        submittedDataPre.textContent = JSON.stringify(data, null, 2);
+
+        // Hide the form and show thank you message
+        form.style.display = 'none';
+        thankyouDiv.style.display = 'block';
+
+        // Optionally, scroll to the thank you message
+        thankyouDiv.scrollIntoView({ behavior: 'smooth' });
+      });
     });
   </script>
 </body>
 </html>
+
 
 
 
