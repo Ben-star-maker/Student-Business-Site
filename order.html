@@ -119,24 +119,6 @@
     #preview-items > div {
       min-width: 50px;
     }
-    /* Thank you message styles */
-    #thank-you-message {
-      background: #e8f5e9;
-      border: 2px solid #4caf50;
-      border-radius: 10px;
-      padding: 20px;
-      margin-top: 30px;
-      color: #2e7d32;
-      font-weight: 600;
-      display: none;
-    }
-    #thank-you-message h2 {
-      margin-top: 0;
-      color: #1b5e20;
-    }
-    #thank-you-message p {
-      font-weight: normal;
-    }
   </style>
 </head>
 <body>
@@ -211,9 +193,6 @@
     </div>
   </form>
 
-  <!-- Thank you message container -->
-  <div id="thank-you-message"></div>
-
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       const nameInput = document.getElementById('card-name-input');
@@ -234,6 +213,7 @@
       const previewItem2 = document.getElementById('preview-item2');
       const previewItem3 = document.getElementById('preview-item3');
 
+      // Update preview text as user types
       nameInput.addEventListener('input', () => {
         previewName.textContent = nameInput.value.trim() || '[Name]';
       });
@@ -259,47 +239,20 @@
         previewItem3.textContent = item3Input.value.trim() || '[Three]';
       });
 
-      // Handle form submission
+      // On submit, redirect to your Google Form URL
       const form = document.getElementById('order-form');
-      const thankYouMessage = document.getElementById('thank-you-message');
-
       form.addEventListener('submit', (e) => {
-        e.preventDefault(); // prevent page reload
+        e.preventDefault(); // prevent default form submission
 
-        // Collect form values
-        const studentName = document.getElementById('student-name').value.trim();
-        const grade = document.getElementById('grade').value;
-        const cardName = nameInput.value.trim();
-        const description1 = desc1Input.value.trim();
-        const description2 = desc2Input.value.trim();
-        const description3 = desc3Input.value.trim();
-        const customHeading = headingInput.value.trim();
-        const item1 = item1Input.value.trim();
-        const item2 = item2Input.value.trim();
-        const item3 = item3Input.value.trim();
-
-        // Build thank you message with submitted info
-        thankYouMessage.innerHTML = `
-          <h2>Thank You for Your Order, ${studentName}!</h2>
-          <p><strong>Grade:</strong> ${grade}</p>
-          <p><strong>Card Name:</strong> ${cardName}</p>
-          <p><strong>Description 1:</strong> ${description1}</p>
-          <p><strong>Description 2:</strong> ${description2 || '(none)'}</p>
-          <p><strong>Description 3:</strong> ${description3 || '(none)'}</p>
-          <p><strong>Custom Heading:</strong> ${customHeading || '(none)'}</p>
-          <p><strong>Items under heading:</strong> ${item1 || '(none)'} | ${item2 || '(none)'} | ${item3 || '(none)'}</p>
-          <p>We will contact you within 2 days to arrange pickup and payment.</p>
-          <p><em>If you have questions, please <a href="mailto:contact@goldenhorizon.com">email us</a>.</em></p>
-        `;
-
-        // Show thank-you message and hide form and preview
-        thankYouMessage.style.display = 'block';
-        form.style.display = 'none';
+        // Optional: you could gather the data here and append as URL params, but Google Forms doesn’t accept custom pre-filled params easily unless you set it up
+        // For now, just redirect directly:
+        window.location.href = "https://docs.google.com/forms/d/e/1FAIpQLSf2jwymE2XROEYdvfgMpE9kIkUbKajR_UZJCdqnjN2_YNgLHw/viewform?usp=sf_link";
       });
     });
   </script>
 </body>
 </html>
+
 
 
 
